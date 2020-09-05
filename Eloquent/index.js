@@ -65,4 +65,27 @@ const SCRIPTS = require('./script.js');
 // myLoop(3, n => n > 0, n => --n, n => console.log(n));
 
 // =======3-Everything========
-let every1 = ()
+//The some function keeps iterating until it finds a true value and returns true,
+//and so to implement an everything function you must iterate until you find false
+//or else it retuns true; returns true if evey part of the array passes the test
+let every1 = (arr, predicateFunc) => {
+    for (let item of arr) {
+        if (!predicateFunc(item)) 
+            return false;
+    }
+    return true;
+}
+let every1some = (arr, predicateFunc) => {
+    //run some
+    //find the index in which it stops
+    arr.some(item => {
+        if (predicateFunc(item)) {
+            if (arr.indexOf(item) != 0) {
+                return false;
+            }
+        }
+        return true;
+    })
+    //if it does not stop at the first index then it does not pass
+
+}
