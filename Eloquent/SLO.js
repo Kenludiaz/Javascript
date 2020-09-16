@@ -26,3 +26,17 @@
 //     }
   
 // };
+
+// Ex. 2
+
+class Set {
+    constructor(...args) {
+        this.items = [...args];
+    };
+    add = (...args) => {
+        this.items = [this.items, ...args];
+    }
+    delete = (arg) => {
+        if ()
+    }
+}
