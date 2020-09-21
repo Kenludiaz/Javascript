@@ -1,0 +1,51 @@
+~<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is a fetch exercise</h1>
+    <p class="poem"></p>
+    <script>
+        grabPoem()
+        .catch(e => {
+            console.log(e);
+        });
+        grabArrImg()
+        .catch(e => {
+            console.log(e);
+        })
+
+        
+        const images = [
+            'sharon-pittaway-98257-unsplash.jpg', 
+            'guy-stevens-746794-unsplash.jpg',
+            'daniele-levis-pelusi-311027-unsplash.jpg'
+        ]
+        
+        grabArrImg()
+        .catch(e => console.log(e));
+
+        async function grabArrImg() {
+            for (element of images) {
+                const response = await fetch(element);
+               const newElement = await response.blob();
+               const img = document.createElement('img')
+               img.src = URL.createObjectURL(newElement);
+                img.width = '220';
+                document.body.append(img);
+           };
+        }
+
+
+
+        async function grabPoem() {
+            let poem = await fetch("./poem.txt");
+            let blob = await poem.text();
+            document.querySelector(".poem").innerHTML = blob;
+        }
+    </script>
+</body>
+</html>
