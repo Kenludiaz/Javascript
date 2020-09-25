@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        Latitude <span class="lat"></span>
+
+        Longitude <span class="lon"></span>
+        Velocity <span class="vel"></span>
+    </p>
+    <script>
+
+        const api_URL = "https://api.wheretheiss.at/v1/satellites/25544";
+        async function getISS() {
+            let response = await fetch(api_URL);
+            let data = await response.json();
+
+            let { latitude, longitude, velocity }  = data;
+            // console.log(latitude, longitude);
+
+            let lon = document.querySelector(".lon");
+            let lat = document.querySelector(".lat");
+            let vel = document.querySelector(".vel");
+
+            lat.textContent =  latitude;
+            lon.textContent =  longitude;
+            vel.textContent = velocity;
+        }
+        getISS();
+        setInterval(getISS, 1000);
+    </script>
+</body>
+</html>
