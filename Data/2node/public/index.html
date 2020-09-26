@@ -8,5 +8,16 @@
 <body>
     Hello
     <a href="./goodbye.html">Goodbye</a>
+
+    <script>
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(position => {
+                let longitude = position.coords.longitude;
+                let latitude = position.coords.latitude;
+                console.log(latitude, longitude)
+
+            });
+        }
+    </script>
 </body>
 </html>
