@@ -10,8 +10,6 @@ let collection = [];
 app.post('/api', (req,res) => {
     const data = req.body;
     collection.push(data);
-    res.json({
-        status: 'success',
-        data: collection
-    })
+    console.log(req);
+    res.json({collection})
 })
