@@ -1,9 +1,17 @@
+const { response } = require("express");
 const express = require("express");
 const app = express();
 
-app.listen(3000);
+app.listen(3000, () => console.log("Listening at 3000"));
 app.use(express.static("public"));
+app.use(express.json());
 
+let collection = [];
 app.post('/api', (req,res) => {
-    console.log(req);
+    const data = req.body;
+    collection.push(data);
+    res.json({
+        status: 'success',
+        data: collection
+    })
 })

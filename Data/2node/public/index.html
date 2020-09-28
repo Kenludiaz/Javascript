@@ -8,15 +8,51 @@
 <body>
     Hello
     <a href="./goodbye.html">Goodbye</a>
+    <button onclick="">Submit</button>
 
     <script>
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(position => {
-                let longitude = position.coords.longitude;
-                let latitude = position.coords.latitude;
-                console.log(latitude, longitude)
+        async function postData() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(async position => {
+                    let longitude = position.coords.longitude;
+                    let latitude = position.coords.latitude;
+                    console.log(latitude, longitude);
+                    let data = { latitude, longitude };
+                    let options = {
+                        method: "POST",
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    };
+    
+                    const response = await fetch('/api', options);
+                    const json = await response.json();
+                    console.log(json);
+                });
+            }
 
-            });
+        }
+        // postData().catch(e => console.log(e));
+        
+        async function submitData() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition( async position => {
+                    let lat = position.coords.latitude;
+                    let lon = position.coords.longitude;
+                    let data = { lon, lat };
+                    let options = {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        header: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                    const res = await fetch('/api', options);
+                    const json = await res.json;
+                    console.log(json);
+                })
+            }
         }
     </script>
 </body>
