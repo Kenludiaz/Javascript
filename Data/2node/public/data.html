@@ -7,14 +7,24 @@
 </head>
 <body>
     <h1>Data</h1>
-    <ul>
+    <ul class="data-list">
         <li></li>
     </ul>
     <script>
         async function getData() {
-            let response = fetch('../database.db');
-            let data = response.text;
+            let response = await fetch('../database.db');
+            let data = await response.text();
+            const dataArr = data.split('\n');
+            
+            dataArr.forEach( entry => {
+                // console.log(typeof(entry));
+                const dataList = document.querySelector('.data-list');
+                var node = document.createElement("li");
+                node.textContent = entry;
+                dataList.appendChild(node);
+            })
         }
+        getData().catch(e => console.log(e));
     </script>
 </body>
 </html>
