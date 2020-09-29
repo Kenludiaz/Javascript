@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Feedbacl</h1>
+    <h1>Feedback</h1>
     <form action="./database.db" method="POST">
         <input type="textArea">
         <input type="file">
@@ -14,17 +14,10 @@
     <button type="submit">Submit</button>
     <script>
         async function postFeedback() {
-            let response = await fetch('./database.db');
-            let data = await response.text();
-            const dataArr = data.split('\n');
-            
-            dataArr.forEach( entry => {
-                // console.log(typeof(entry));
-                const dataList = document.querySelector('.data-list');
-                var node = document.createElement("li");
-                node.textContent = entry;
-                dataList.appendChild(node);
-            })
+            let options = {
+                method: 'POST',
+                body:  
+            }
         }
         
     </script>

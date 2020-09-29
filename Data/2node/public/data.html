@@ -12,7 +12,7 @@
     </ul>
     <script>
         async function getData() {
-            let response = await fetch('../database.db');
+            let response = await fetch('./api');
             let data = await response.text();
             const dataArr = data.split('\n');
             

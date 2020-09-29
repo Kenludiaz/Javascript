@@ -11,6 +11,16 @@ app.use(express.json());
 const database = new Datastore('./public/database.db')
 database.loadDatabase();
 
+app.get('/api', (req, res) => {
+    database.find({}, (err, data) => {
+        if (err) {
+            response.end();
+            return;
+        }
+        response.json(data);
+    })
+})
+
 
 app.post('/api', (req,res) => {
     const data = req.body;
