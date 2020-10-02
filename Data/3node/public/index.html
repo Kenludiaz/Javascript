@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script href=""></script>
+</head>
+<body>
+    This is me
+    <script>
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition( async position => {
+                let lat = position.coords.latitude;
+                let lon = position.coords.longitude;
+                
+                const response = await fetch(`/api/${lat}, ${lon}`);
+                const data = response.text();
+                let header = document.createElement('h1');
+                header.textContent = `The weather here is ${data}`
+                
+                document.body.appendChild(header);
+
+            })
+        }
+    </script>
+</body>
+</html>
