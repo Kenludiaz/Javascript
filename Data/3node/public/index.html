@@ -15,7 +15,8 @@
                 let lon = position.coords.longitude;
                 
                 const response = await fetch(`/api/${lat}, ${lon}`);
-                const data = response.text();
+                const data = response.json();
+                console.log(data);
                 let header = document.createElement('h1');
                 header.textContent = `The weather here is ${data}`
                 
